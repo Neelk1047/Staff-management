@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Attendance</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f9ff;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .sidebar {
+      width: 70px;
+      background: #007bff;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+      position: fixed;
+      height: 100vh;
+    }
+    .sidebar a {
+      font-size: 22px;
+      color: white;
+      margin: 20px 0;
+      text-decoration: none;
+    }
+    .topbar {
+      position: fixed;
+      left: 70px;
+      top: 0;
+      right: 0;
+      background: #007bff;
+      color: white;
+      height: 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      z-index: 1;
+    }
+    .topbar a {
+      color: white;
+      margin-right: 20px;
+      text-decoration: none;
+    }
+    .main {
+      margin-left: 70px;
+      padding: 70px 20px 20px;
+      width: 100%;
+      overflow-y: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+    }
+    th, td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #ccc;
+      text-align: left;
+    }
+    th {
+      background: #e9f3ff;
+    }
+    button {
+      padding: 6px 12px;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .danger {
+      background: #dc3545;
+    }
+    .controls {
+      margin: 10px 0;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .hidden {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      table, .topbar, .sidebar {
+        font-size: 14px;
+      }
+      .topbar { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <a href="dashboard.html">📊</a>
+    <a href="staff.html">👥</a>
+    <a href="attendance.html">🕒</a>
+  </div>
+
+  <div class="topbar">
+    <div>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="staff.html">Staff</a>
+      <a href="attendance.html">Attendance</a>
+    </div>
+    <div id="datetime"></div>
+  </div>
+
+  <div class="main">
+    <h2>🕒 Staff Attendance</h2>
+
+    <div class="controls">
+      <input type="date" id="selectedDate" />
+      <button onclick="downloadCSV()">⬇ Export CSV</button>
+      <button onclick="clearAll()" class="danger">❌ Clear All</button>
+    </div>
+
+    <table id="attendanceTable" class="hidden">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Designation</th>
+          <th>Check-in</th>
+          <th>Checkout</th>
+          <th>Work Hours</th>
+          <th>Location</th>
+          <th>❌</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <p id="noRecords" class="hidden">No records available for selected date.</p>
+  </div>
+
+  <script src="js/attendance.js" defer></script>
+</body>
+</html>
