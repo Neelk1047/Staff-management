@@ -1,0 +1,1 @@
+The Staff Management System is a complete solution for handling employee registration, attendance tracking, and reporting. This module provides a clean interface for managing staff records and logging attendance efficiently using localStorage.
